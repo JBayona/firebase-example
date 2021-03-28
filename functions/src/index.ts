@@ -11,6 +11,8 @@ import { addEntry, getAllEntries } from "./entryController";
 // });
 
 const app = express();
+
+// CRUD APIS
 app.get("/", (req, res) => res.status(200).send("Hey there!"));
 // Add or Update entries into the database
 app.post("/entries", addEntry);
