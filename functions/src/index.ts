@@ -1,6 +1,6 @@
 import * as functions from "firebase-functions";
 import * as express from "express";
-import { addEntry, getAllEntries } from "./entryController";
+import { addEntry, getAllEntries, updateEntry } from "./entryController";
 
 // Start writing Firebase Functions
 // https://firebase.google.com/docs/functions/typescript
@@ -16,7 +16,10 @@ const app = express();
 app.get("/", (req, res) => res.status(200).send("Hey there!"));
 // Add or Update entries into the database
 app.post("/entries", addEntry);
+// Get all records from "entries" database
 app.get("/entries", getAllEntries);
+// Update a record
+app.patch("/entries/:entryId", updateEntry);
 
 // Server rotutes
 exports.app = functions.https.onRequest(app);
