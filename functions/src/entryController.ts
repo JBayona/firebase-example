@@ -1,7 +1,7 @@
 // File use this file to house all the controllers for our entry.
 import { Response } from "express";
 import { db } from "./config/firebase";
-import * as functions from "firebase-functions";
+// import * as functions from "firebase-functions";
 
 type EntryType = {
   title: string;
@@ -93,5 +93,28 @@ const updateEntry = async (req: Request, res: Response) => {
   }
 };
 
+// Delete entry
+const deleteEntry = async (req: Request, res: Response) => {
+  const { entryId } = req.params;
+
+  try {
+    const entry = db.collection("entries").doc(entryId);
+
+    await entry.delete().catch((error) => {
+      return res.status(400).json({
+        status: "error",
+        message: error.message,
+      });
+    });
+
+    return res.status(200).json({
+      status: "success",
+      message: "entry deleted successfully",
+    });
+  } catch (error) {
+    return res.status(500).json(error.message);
+  }
+};
+
 // Export our functions
-export { addEntry, getAllEntries, updateEntry };
+export { addEntry, getAllEntries, updateEntry, deleteEntry };

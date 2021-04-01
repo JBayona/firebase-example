@@ -1,6 +1,11 @@
 import * as functions from "firebase-functions";
 import * as express from "express";
-import { addEntry, getAllEntries, updateEntry } from "./entryController";
+import {
+  addEntry,
+  getAllEntries,
+  updateEntry,
+  deleteEntry,
+} from "./entryController";
 
 // Start writing Firebase Functions
 // https://firebase.google.com/docs/functions/typescript
@@ -20,6 +25,8 @@ app.post("/entries", addEntry);
 app.get("/entries", getAllEntries);
 // Update a record
 app.patch("/entries/:entryId", updateEntry);
+// Delete a record
+app.delete("/entries/:entryId", deleteEntry);
 
 // Server rotutes
 exports.app = functions.https.onRequest(app);
