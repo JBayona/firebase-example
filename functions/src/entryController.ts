@@ -49,6 +49,7 @@ const addEntry = async (req: Request, res: Response) => {
   }
 };
 
+// Get all entries
 const getAllEntries = async (req: Request, res: Response) => {
   try {
     const allEntries: EntryType[] = [];
