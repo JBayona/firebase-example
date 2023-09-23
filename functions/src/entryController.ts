@@ -106,7 +106,7 @@ const deleteEntry = async (req: Request, res: Response) => {
         message: error.message,
       });
     });
-
+    // No Error.
     return res.status(200).json({
       status: "success",
       message: "entry deleted successfully",
